@@ -18,5 +18,20 @@ output application/json
 "Message" : "Hello world !"]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
+		<set-variable value="#[payload]" doc:name="Set Variable" doc:id="22022c4c-51e6-47d9-b720-9a85798bfae3" variableName="var1"/>
+		<logger level="INFO" doc:name="Logger" doc:id="ed19d5a8-b6b8-4336-b176-6e55707b2db8" />
+		<flow-ref doc:name="Flow Reference" doc:id="f0787f96-ca9a-49f8-8225-736bcc754c2c" name="hello-worldSub_Flow"/>
 	</flow>
+	<sub-flow name="hello-worldSub_Flow" doc:id="16fb49cf-553a-4159-9745-b8fa4db60830" >
+		<ee:transform doc:name="Transform Message" doc:id="f178dcd1-46ff-4727-bf67-20058a127802" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="ee585a43-6abc-4c2f-bee2-0a623f00eb01" />
+	</sub-flow>
 </mule>
